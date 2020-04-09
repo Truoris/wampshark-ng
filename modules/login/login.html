@@ -1,0 +1,54 @@
+<div class="login-panel" ng-enter="login();">
+    <h1>WampShark</h1>
+    <h6><a href="https://crossbar.io/">Crossbar.io</a> Debug Tool - v2.0</h6>
+
+    <div class="row login-form">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="crossbar">Crossbar URL</label>
+                <input type="text" class="form-control" id="crossbar" list="url_history" ng-model="connect.url">
+
+                <datalist id="url_history">
+                    <option value="ws://127.0.0.1:8080/ws">
+                    <option ng-repeat="url in url_history" ng-value="url">
+                </datalist>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="realm">Realm</label>
+                <input type="text" class="form-control" id="realm" list="realm_history" ng-model="connect.realm">
+
+                <datalist id="realm_history">
+                    <option value="Realm">
+                    <option ng-repeat="realm in realm_history" ng-value="realm">
+                </datalist>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="authentication">Authentication</label>
+        <select class="form-control" id="authentication" ng-model="connect.auth_type">
+            <option>Anonymous</option>
+            <option>WAMP-CRA</option>
+        </select>
+    </div>
+
+    <div class="row" ng-show="connect.auth_type!='Anonymous'">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" ng-model="connect.auth.username">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" ng-model="connect.auth.password">
+            </div>
+        </div>
+    </div>
+
+    <div class="btn btn-primary" ng-click="login();">Connect</div>
+</div>

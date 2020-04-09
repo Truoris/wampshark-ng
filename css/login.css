@@ -1,0 +1,14 @@
+.login-panel {
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    margin-top: 150px;
+}
+
+.login-form {
+    margin-top: 50px;
+}
+
+.login-panel .form-group {
+    text-align: left !important;
+}
