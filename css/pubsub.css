@@ -1,0 +1,8 @@
+.topics-table, .message-table {
+    margin-top: 20px;
+}
+
+.topics-filter {
+    margin-top: 30px;
+    padding: 0 50px;
+}

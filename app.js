@@ -1,11 +1,24 @@
 'use strict';
 
+function getRandomColor() {
+    var color = 'rgba(';
+    for (var i = 0; i < 3; i++) {
+        color += Math.floor(Math.random() * 256);
+
+        if (i < 2) {
+            color += ", ";
+        }
+    }
+    return color+", 0.4)";
+}
+
 angular.module('ws', [
     'ngRoute',
     'ui.bootstrap',
     'ui-notification',
     'ui.bootstrap.contextMenu',
     'angularEnter',
+    'jsonFormatter',
     'ws.services.global',
     'ws.services.wamp',
     'ws.login',

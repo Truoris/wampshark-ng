@@ -13,11 +13,13 @@
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="node_modules/jsonformatter/dist/json-formatter.min.css">
     <link rel="stylesheet" href="components/angular-ui-notification/angular-ui-notification.css">
     <link rel="stylesheet" href="components/context-menu.css">
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/pubsub.css">
 </head>
 <body ng-controller="GlobalCtrl">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" ng-show="wamp.isAuthenticated()">
@@ -29,6 +31,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" ng-class="{active: global.data.page==='dashboard'}">
                 <a class="nav-link" href="#/">Dashboard</a>
+            </li>
+            <li class="nav-item" ng-class="{active: global.data.page==='sessions'}">
+                <a class="nav-link" href="#/sessions">Sessions</a>
             </li>
             <li class="nav-item" ng-class="{active: global.data.page==='pubsub'}">
                 <a class="nav-link" href="#/pub-sub">Pub/Sub</a>
@@ -61,9 +66,11 @@
 <script src="node_modules/angular/angular.js"></script>
 <script src="node_modules/angular-route/angular-route.min.js"></script>
 <!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
-<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+<script src="components/angular-ui-bootstrap/ui-bootstrap.js"></script>
+<script src="components/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="node_modules/angular-bootstrap-contextmenu/contextMenu.js"></script>
 <script src="node_modules/autobahn-browser/autobahn.min.js"></script>
+<script src="node_modules/jsonformatter/dist/json-formatter.min.js"></script>
 
 
 <script src="components/angular-enter/angular-enter.js"></script>

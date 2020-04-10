@@ -1,6 +1,6 @@
 let wamp_module = angular.module('ws.services.wamp', []);
 
-wamp_module.factory('$wamp', ['Notification', '$q', function($notif, $q) {
+wamp_module.factory('$wamp', ['Notification', '$q', '$rootScope', function($notif, $q, $rootScope) {
     let obj = {
         data: {
             authenticated: false
@@ -46,6 +46,42 @@ wamp_module.factory('$wamp', ['Notification', '$q', function($notif, $q) {
             obj.connection.close("LOGOUT");
             obj.connection = null;
             obj.session = null;
+        },
+        digestWrapper: function (func) {
+            return function (args, kwargs, details) {
+                func(args, kwargs, details);
+                $rootScope.$applyAsync();
+            };
+        },
+        register: function (topic, func) {
+            if (obj.connection.isConnected)
+                return obj.session.register(topic, obj.digestWrapper(func));
+            else
+                console.log('[WAMP] no open connection');
+        },
+        call: function (topic, args) {
+            if (obj.connection.isConnected)
+                return obj.session.call(topic, args);
+            else
+                console.log('[WAMP] no open connection');
+        },
+        subscribe: function (topic, callback, options) {
+            if (obj.connection.isConnected)
+                return obj.session.subscribe(topic, obj.digestWrapper(callback), options);
+            else
+                console.log('[WAMP] no open connection');
+        },
+        publish: function (topic, args, kwargs, options) {
+            if (obj.connection.isConnected)
+                return obj.session.publish(topic, args, kwargs, options);
+            else
+                console.log('[WAMP] no open connection');
+        },
+        unsubscribe: function (subscription) {
+            if (obj.connection.isConnected)
+                return obj.session.unsubscribe(subscription);
+            else
+                console.log('[WAMP] no open connection');
         }
     };
 

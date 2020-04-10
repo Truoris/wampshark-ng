@@ -5,3 +5,7 @@ body {
 .navbar-text-center {
     margin: auto;
 }
+
+.fake-link {
+    cursor: pointer;
+}
