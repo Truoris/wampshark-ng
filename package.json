@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
-    "angular": "^1.7.9",
+    "angular": "^1.8.0",
     "angular-bootstrap-contextmenu": "^1.1.0",
     "angular-route": "^1.7.4",
     "angular-ui-bootstrap": "^2.5.6",
