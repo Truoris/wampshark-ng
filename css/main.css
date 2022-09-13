@@ -9,3 +9,14 @@ body {
 .fake-link {
     cursor: pointer;
 }
+
+.scroll-table tbody {
+    display: block;
+    overflow: auto;
+}
+
+.scroll-table thead, .scroll-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}

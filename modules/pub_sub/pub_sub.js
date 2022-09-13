@@ -24,10 +24,12 @@ angular.module('ws.pubsub', ['ngRoute'])
             $scope.subscription = null;
             $scope.topic_filter = {
                 timeout: 5,
-                prefix: 'net'
+                prefix: 'net',
+                search: ''
             };
 
             $scope.get_timeout_time = function() {
+                // console.log(Math.floor(new Date().getTime())-($scope.topic_filter.timeout*60000));
                 return Math.floor(new Date().getTime())-($scope.topic_filter.timeout*60000);
             }
 
@@ -76,6 +78,20 @@ angular.module('ws.pubsub', ['ngRoute'])
                     }
                 });
             };
+
+            $scope.apply_md5 = function () {
+                if ($scope.topic_filter.search.startsWith('md5(')) {
+                    let data = $scope.topic_filter.search.split('(')[1].split(')')[1];
+                    if (data !== undefined) {
+                        $scope.topic_filter.search = MD5(data);
+                    }
+                }
+            };
+
+            $scope.search = function (topic) {
+                return ($scope.topic_filter.search === '' ||
+                    topic.topic.toLowerCase().includes($scope.topic_filter.search.toLowerCase()));
+            };
         }])
 
 
@@ -83,7 +99,6 @@ angular.module('ws.pubsub', ['ngRoute'])
     .controller('MessageDetailsCtrl', ['$scope', 'message', '$uibModalInstance',
         function($scope, message, $uibModalInstance) {
             $scope.message = message;
-            console.log('start modal Controller');
 
             $scope.close = function () {
                 $uibModalInstance.dismiss();
