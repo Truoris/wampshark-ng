@@ -5,5 +5,18 @@
     </button>
 </div>
 <div class="modal-body">
-    <json-formatter json="message.message" open="2"></json-formatter>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" ng-class="{active: tab=='object'}" ng-click="tab='object'">Object</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" ng-class="{active: tab=='json'}" ng-click="tab='json'">JSON</a>
+        </li>
+    </ul>
+    <div ng-show="tab=='object'">
+        <json-formatter json="message.message" open="2"></json-formatter>
+    </div>
+    <div ng-show="tab=='json'">
+        <pre>{{json_message}}</pre>
+    </div>
 </div>

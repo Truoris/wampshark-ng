@@ -12,6 +12,7 @@ angular.module('ws.pubsub', ['ngRoute'])
     .controller('PubSubCtrl', ['$scope', '$location', '$uibModal', '$global', 'Notification', '$wamp',
         function($scope, $location, $uibModal, $global, $notif, $wamp) {
             if (!$wamp.isAuthenticated()) {
+                console.log('not authenticated');
                 $location.path("/login");
                 return;
             }
@@ -91,11 +92,6 @@ angular.module('ws.pubsub', ['ngRoute'])
                 return ($scope.topic_filter.search === '' ||
                     topic.topic.toLowerCase().includes($scope.topic_filter.search.toLowerCase()));
             };
-
-            $scope.$on('$destroy', function(){
-                if ($scope.subscription !== null)
-                    $wamp.unsubscribe($scope.subscription);
-            });
         }])
 
 
@@ -103,8 +99,6 @@ angular.module('ws.pubsub', ['ngRoute'])
     .controller('MessageDetailsCtrl', ['$scope', 'message', '$uibModalInstance',
         function($scope, message, $uibModalInstance) {
             $scope.message = message;
-            $scope.tab = 'object';
-            $scope.json_message = JSON.stringify(message.message, null, 2);
 
             $scope.close = function () {
                 $uibModalInstance.dismiss();
