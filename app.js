@@ -23,7 +23,8 @@ angular.module('ws', [
     'ws.services.wamp',
     'ws.login',
     'ws.dashboard',
-    'ws.pubsub'
+    'ws.pubsub',
+    'ws.rpc'
 ])
     .config(['$routeProvider', '$httpProvider', 'NotificationProvider', '$locationProvider', function ($routeProvider, $httpProvider, $NotificationProvider, $locationProvider) {
         $routeProvider.otherwise({

@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "angular-bootstrap-contextmenu": "^1.1.0",
     "angular-route": "^1.7.4",
     "angular-ui-bootstrap": "^2.5.6",
     "autobahn-browser": "^20.2.2",
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.6.3",
     "jsonformatter": "^0.7.0",
     "md5": "^2.3.0",
     "popper.js": "^1.16.1"

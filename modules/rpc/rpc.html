@@ -1,67 +1,62 @@
-<div class="row topics-filter">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="topic_prefix">Topic Prefix</label>
-            <input type="text" class="form-control" id="topic_prefix" ng-model="topic_filter.prefix"
-                   ng-blur="start_listening();">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group m-3">
+                <label for="rpc_search">Search</label>
+                <input type="text" class="form-control" id="rpc_search" ng-model="rpc_filter">
+            </div>
+
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>RPC URI</th>
+                    <th> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="rpc in rpcs | filter:rpc_filter">
+                    <td>{{rpc.uri}}</td>
+                    <td class="text-right">
+                        <div class="btn btn-primary btn-sm" ng-click="prepare_call(rpc.uri);">CALL</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="timeout">Publication timeout (minute)</label>
-            <input type="number" min="1" max="10" step="1" class="form-control" id="timeout" ng-model="topic_filter.timeout">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="topic_search">Topic Search</label>
-            <input type="text" class="form-control" id="topic_search" ng-model="topic_filter.search" ng-blur="apply_md5();">
+        <div class="col-md-8 p-3">
+            <div class="card">
+                <div class="card-body">
+                    RPC: {{call.uri}}
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Parameters
+                        </div>
+                        <div class="card-body">
+                            <textarea class="rpc-params" ng-model="call.params"></textarea>
+                        </div>
+
+                        <div class="card-footer p-0" ng-show="call.uri">
+                            <div class="btn btn-primary rpc-btn" ng-click="rpc_call();">Call RPC</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header" ng-class="{'text-bg-success': call.success, 'text-bg-danger': call.error}">
+                            Response
+                        </div>
+                        <div class="card-body">
+                            <pre>{{call.result}}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<table class="table topics-table scroll-table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Subscribe</th>
-        <th scope="col">Topic</th>
-        <th scope="col">Last Publication</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="topic in topics" ng-show="topic.last_update>get_timeout_time() && search(topic)">
-        <td>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" ng-model="topic.subscribe">
-            </div>
-        </td>
-        <td>{{topic.topic}}</td>
-        <td>{{topic.last_update | date:'HH:mm:ss'}}</td>
-    </tr>
-    </tbody>
-</table>
-
-<table class="table message-table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Topic</th>
-        <th scope="col">Username</th>
-        <th scope="col">User Role</th>
-        <th scope="col">Received at</th>
-        <th scope="col">Message</th>
-        <th scope="col" class="text-center">
-            <i class="fas fa-trash fake-link" ng-click="messages=[];"></i>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="msg in messages" class="fake-link" ng-style="{'background-color': msg.color}"
-        ng-click="showMessage(msg);">
-        <td>{{msg.topic}}</td>
-        <td>{{msg.publisher_authid}}</td>
-        <td>{{msg.publisher_authrole}}</td>
-        <td>{{msg.received_time | date:'HH:mm:ss'}}</td>
-        <td colspan="2">{{msg.message | json_str | limitTo:100}}...</td>
-    </tr>
-    </tbody>
-</table>

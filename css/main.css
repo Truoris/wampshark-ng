@@ -12,7 +12,7 @@ body {
 
 .scroll-table tbody {
     display: block;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .scroll-table thead, .scroll-table tbody tr {

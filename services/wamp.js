@@ -59,9 +59,13 @@ wamp_module.factory('$wamp', ['Notification', '$q', '$rootScope', function($noti
             else
                 console.log('[WAMP] no open connection');
         },
-        call: function (topic, args) {
+        call: function (topic, args, callback, errorCallback) {
             if (obj.connection.isConnected)
-                return obj.session.call(topic, args);
+                obj.session.call(topic, args).then(function (data) {
+                    obj.digestWrapper(callback)(data);
+                }, function (error) {
+                    obj.digestWrapper(errorCallback)(error);
+                });
             else
                 console.log('[WAMP] no open connection');
         },
