@@ -11,7 +11,7 @@
 
     <title>WampShark</title>
 
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="node_modules/jsonformatter/dist/json-formatter.min.css">
     <link rel="stylesheet" href="components/angular-ui-notification/angular-ui-notification.css">
@@ -30,22 +30,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item" ng-class="{active: global.data.page==='dashboard'}">
-                    <a class="nav-link" href="#/">Dashboard</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" ng-class="{active: global.data.page=='dashboard'}" href="#/">Dashboard {{global.data.page}}</a>
                 </li>
-                <li class="nav-item" ng-class="{active: global.data.page==='sessions'}">
-                    <a class="nav-link" href="#/sessions">Sessions</a>
+                <li class="nav-item">
+                    <a class="nav-link" ng-class="{active: global.data.page=='sessions'}" href="#/sessions">Sessions</a>
                 </li>
-                <li class="nav-item" ng-class="{active: global.data.page==='pubsub'}">
-                    <a class="nav-link" href="#/pub-sub">Pub/Sub</a>
+                <li class="nav-item">
+                    <a class="nav-link" ng-class="{active: global.data.page=='pubsub'}" href="#/pub-sub">Pub/Sub</a>
                 </li>
-                <li class="nav-item" ng-class="{active: global.data.page==='rpc'}">
-                    <a class="nav-link" href="#/rpc">RPC</a>
+                <li class="nav-item">
+                    <a class="nav-link" ng-class="{active: global.data.page=='rpc'}" href="#/rpc">RPC</a>
                 </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item active">
+            <ul class="navbar-nav">
+                <li class="nav-item">
                     <a class="nav-link" href="#/logout">Logout</a>
                 </li>
             </ul>
