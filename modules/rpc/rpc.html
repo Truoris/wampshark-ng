@@ -10,13 +10,15 @@
                 <thead class="table-dark">
                 <tr>
                     <th>RPC URI</th>
-                    <th> </th>
+                    <th class="text-end pe-3">
+                        <i class="fas fa-sync-alt fake-link" ng-click="get_rpcs();"></i>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="rpc in rpcs | filter:rpc_filter">
                     <td>{{rpc.uri}}</td>
-                    <td class="text-right">
+                    <td class="text-end">
                         <div class="btn btn-primary btn-sm" ng-click="prepare_call(rpc.uri);">CALL</div>
                     </td>
                 </tr>
