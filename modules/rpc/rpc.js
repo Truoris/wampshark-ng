@@ -18,7 +18,11 @@ angular.module('ws.rpc', ['ngRoute'])
 
             $global.page.set('rpc');
             $scope.call = {
-                params: "[]"
+                uri: "",
+                params: "[]",
+                duration: 0,
+                success: false,
+                error: false
             };
 
             $scope.get_rpcs = function () {
@@ -39,7 +43,8 @@ angular.module('ws.rpc', ['ngRoute'])
                     uri: uri,
                     params: "[]",
                     success: false,
-                    error: false
+                    error: false,
+                    duration: 0
                 };
             };
 
@@ -57,13 +62,16 @@ angular.module('ws.rpc', ['ngRoute'])
                     return;
                 }
 
+                let start = Date.now();
                 $wamp.call($scope.call.uri, params, function (rpc) {
+                    $scope.call.duration = Date.now()-start;
                     $scope.call.success = true;
                     if (rpc === null)
                         $scope.call.result = "null";
                     else
                         $scope.call.result = JSON.stringify(rpc, null, 4);
                 }, function (error) {
+                    $scope.call.duration = Date.now()-start;
                     $scope.call.error = true;
                     $scope.call.result = JSON.stringify(error, null, 4);
                 });

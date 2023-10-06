@@ -1,21 +1,27 @@
 <div class="row topics-filter">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="topic_prefix">Topic Prefix</label>
             <input type="text" class="form-control" id="topic_prefix" ng-model="topic_filter.prefix"
                    ng-blur="start_listening();">
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="timeout">Publication timeout (minute)</label>
             <input type="number" min="1" max="10" step="1" class="form-control" id="timeout" ng-model="topic_filter.timeout">
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="topic_search">Topic Search</label>
             <input type="text" class="form-control" id="topic_search" ng-model="topic_filter.search" ng-blur="apply_md5();">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="topic_search">Content Search</label>
+            <input type="text" class="form-control" id="content_search" ng-model="content_search" ng-blur="apply_md5();">
         </div>
     </div>
 </div>
@@ -59,7 +65,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="msg in messages" class="fake-link" ng-style="{'background-color': msg.color}"
-                ng-click="showMessage(msg);">
+                ng-click="showMessage(msg);" ng-show="content_filter(msg.message)">
                 <td>{{msg.topic}}</td>
 <!--                <td>{{msg.publisher_authid}}</td>-->
 <!--                <td>{{msg.publisher_authrole}}</td>-->

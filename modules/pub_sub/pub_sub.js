@@ -26,6 +26,7 @@ angular.module('ws.pubsub', ['ngRoute'])
                 prefix: 'net',
                 search: ''
             };
+            $scope.content_search = '';
 
             $scope.get_timeout_time = function() {
                 // console.log(Math.floor(new Date().getTime())-($scope.topic_filter.timeout*60000));
@@ -90,6 +91,11 @@ angular.module('ws.pubsub', ['ngRoute'])
             $scope.search = function (topic) {
                 return ($scope.topic_filter.search === '' ||
                     topic.topic.toLowerCase().includes($scope.topic_filter.search.toLowerCase()));
+            };
+
+            $scope.content_filter = function (message) {
+                return ($scope.content_search === '' ||
+                    JSON.stringify(message).toLowerCase().indexOf($scope.content_search.toLowerCase()) > -1);
             };
 
             $scope.$on('$destroy', function(){

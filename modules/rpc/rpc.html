@@ -51,7 +51,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header" ng-class="{'text-bg-success': call.success, 'text-bg-danger': call.error}">
-                            Response
+                            Response <span ng-show="call.duration>0">({{call.duration}}ms)</span>
                         </div>
                         <div class="card-body">
                             <pre>{{call.result}}</pre>
